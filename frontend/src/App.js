@@ -160,7 +160,7 @@ function App() {
                 currentPage === 'profile' && user ? <ProfilePage user={user} token={token} /> :
                 <HomePage />
               } />
-              <Route path="/user/:userId" element={user ? <UserProfilePage user={user} token={token} /> : <Navigate to="/" />} />
+              <Route path="/user/:userId" element={user ? <div>User Profile Page</div> : <Navigate to="/" />} />
             </Routes>
           </main>
           
