@@ -369,14 +369,14 @@ async def get_user_profile(user_id: str, token: str = Query(...)):
         raise HTTPException(status_code=401, detail="Authentication required")
     
     # Get user details
-    user = await db.users.find_one({"id": user_id})
+    user = await db.users.find_one({"id": user_id}, {"_id": 0})
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
     user_obj = User(**user)
     
     # Get comments for this user
-    comments = await db.comments.find({"target_user_id": user_id}).to_list(100)
+    comments = await db.comments.find({"target_user_id": user_id}, {"_id": 0}).to_list(100)
     
     # Get likes count
     likes_count = await db.likes.count_documents({"target_user_id": user_id})
