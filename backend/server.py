@@ -474,7 +474,7 @@ async def get_my_applications(token: str = Query(...)):
     if not current_user:
         raise HTTPException(status_code=401, detail="Authentication required")
     
-    applications = await db.applications.find({"user_id": current_user.id}).to_list(100)
+    applications = await db.applications.find({"user_id": current_user.id}, {"_id": 0}).to_list(100)
     
     now = datetime.utcnow()
     result = []
