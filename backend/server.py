@@ -344,12 +344,12 @@ async def search_applications(
         "is_active": True,
         "expires_at": {"$gt": now},
         "user_id": {"$ne": current_user.id}  # Don't show own applications
-    }).to_list(100)
+    }, {"_id": 0}).to_list(100)
     
     # Get user details for each application
     result = []
     for app in applications:
-        user = await db.users.find_one({"id": app["user_id"]})
+        user = await db.users.find_one({"id": app["user_id"]}, {"_id": 0})
         if user:
             days_active = (now - app["created_at"]).days
             app_with_user = {
