@@ -1,0 +1,4 @@
+// api/hello.js
+export default (req, res) => {
+  res.send("Hello from Vercel!");
+};
