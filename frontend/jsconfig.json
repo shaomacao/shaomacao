@@ -1,4 +1,9 @@
 {
+  "dependencies": {
+    "date-fns": "^3.0.0",  // Замените 4.1.0 на 3.0.0
+    "react-day-picker": "8.10.1"
+  }
+}{
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
